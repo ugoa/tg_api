@@ -4,7 +4,7 @@ class CreateChangeLogs < ActiveRecord::Migration[5.0]
       t.integer :object_id
       t.string :object_type
       t.datetime :timestamp
-      t.jsonb :object_changes
+      t.jsonb :object_changes, null: false, default: {}
     end
   end
 end

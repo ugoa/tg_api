@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20170302141009) do
     t.integer  "object_id"
     t.string   "object_type"
     t.datetime "timestamp"
-    t.jsonb    "object_changes"
+    t.jsonb    "object_changes", default: {}, null: false
   end
 
 end
