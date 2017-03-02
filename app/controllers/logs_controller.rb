@@ -13,7 +13,7 @@ class LogsController < ApplicationController
     result = if changes.empty?
               []
              else
-               changes[:id] = params[:timestamp]
+               changes[:id] = Time.now.to_i
                [changes]
              end
 
