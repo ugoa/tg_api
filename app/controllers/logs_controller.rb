@@ -10,7 +10,12 @@ class LogsController < ApplicationController
 
     changes = {}
     logs.each { |log| changes.merge! log.object_changes }
-    result = changes.empty? ? [] : [changes]
+    result = if changes.empty?
+              []
+             else
+               changes[:id] = params[:timestamp]
+               [changes]
+             end
 
     render json: result, status: :ok
   end
