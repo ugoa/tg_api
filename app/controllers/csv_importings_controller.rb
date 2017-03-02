@@ -4,6 +4,5 @@ class CsvImportingsController < ApplicationController
   end
 
   def create
-
   end
 end
