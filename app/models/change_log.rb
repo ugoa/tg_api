@@ -1,4 +1,5 @@
 class ChangeLog < ApplicationRecord
+  store_accessor :object_changes, :status
 
   def self.import(file)
     require 'csv'
@@ -7,9 +8,10 @@ class ChangeLog < ApplicationRecord
     csv = CSV.parse(text, headers: true)
 
     csv.each do |row|
-      log = ChangeLog.new(row.to_hash)
-      log.object_changes = JSON.parse log.object_changes
-      log.save
+      attrs = row.to_hash
+      attrs['timestamp'] = Time.at(attrs['timestamp'].to_i).utc.to_datetime
+      attrs['object_changes'] = JSON.parse attrs['object_changes']
+      ChangeLog.create(attrs)
     end
   end
 
