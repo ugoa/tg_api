@@ -10,7 +10,8 @@ class LogsController < ApplicationController
 
     changes = {}
     logs.each { |log| changes.merge! log.object_changes }
+    result = changes.empty? ? [] : [changes]
 
-    render json: changes, status: :ok
+    render json: result, status: :ok
   end
 end
