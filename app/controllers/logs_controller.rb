@@ -6,6 +6,7 @@ class LogsController < ApplicationController
     logs = ChangeLog
       .where(object_id: params[:object_id], object_type: params[:object_type])
       .where('timestamp <= ?', timestamp)
+      .order('timestamp')
 
     changes = {}
     logs.each { |log| changes.merge! log.object_changes }
