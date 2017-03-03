@@ -11,7 +11,7 @@ class LogsController < ApplicationController
     changes = {}
     logs.each { |log| changes.merge! log.object_changes }
     result = if changes.empty?
-              []
+               []
              else
                changes[:id] = Time.now.to_i
                [changes]
